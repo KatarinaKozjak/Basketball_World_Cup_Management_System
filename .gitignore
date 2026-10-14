@@ -1,0 +1,37 @@
+
+# Backend - ASP.NET Core
+**/bin/
+**/obj/
+**/.vs/
+*.user
+*.suo
+
+# Frontend - React
+node_modules/
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/coverage/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Local configuration and secrets
+**/appsettings.Development.json
+**/appsettings.Production.json
+**/secrets.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
