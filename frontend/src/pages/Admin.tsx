@@ -75,8 +75,8 @@ export default function Admin() {
         <div className="grid">
             <article className="card">
                 <h3>Grupe</h3>
-                <form onSubmit={addGroup} className="inline">
-                    <input name="code" placeholder="Oznaka" />
+                <form onSubmit={addGroup} className="group-form">
+                    <input name="code" placeholder="Oznaka" required />
                     <button>Dodaj</button>
                 </form>{groups.map(g => <p key={g.id}>{g.code}</p>)}
             </article>

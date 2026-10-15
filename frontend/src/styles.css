@@ -180,3 +180,19 @@ button{
     border-radius:7px
 
 }
+
+.group-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.group-form input {
+    width: 100%;
+    min-width: 0;
+}
+
+.group-form button {
+    width: 100%;
+}
