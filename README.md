@@ -1,67 +1,81 @@
-# Svetsko prvenstvo u košarci – Qatar 2027
+# Basketball World Cup Management System – Qatar 2027
 
-Projekat predstavlja informacioni sistem za organizaciju i upravljanje Svetskim prvenstvom u košarci Qatar 2027, razvijen prema arhitekturi **A**.
+A full-stack web application developed for organizing and managing the **Qatar 2027 Basketball World Cup**.
 
-Sistem obuhvata dve funkcionalne celine:
-- **A.1 – Administracija prvenstva i upravljanje podacima**
-- **A.2 – Korisnički portal za pregled prvenstva i kupovinu karata**
+The project follows **Architecture A** and consists of two interconnected modules:
 
-Obe celine koriste zajedničku MySQL bazu podataka.
+- **A.1 – Championship Administration:** Management of tournament information, teams, groups, stadiums, matches, ticket prices, and currencies.
+- **A.2 – Customer Portal:** A web interface for viewing tournament information, purchasing tickets, and managing reservations.
 
-## 1. Korišćene tehnologije
+Both modules share a centralized MySQL database and communicate through an ASP.NET Core Web API.
+
+## 1. Technologies Used
+
+
 | Frontend - React 18, TypeScript |
-| Backend - ASP.NET Core 8 Web API |
-| Baza podataka - MySQL |
-| ORM - Entity Framework Core |
-| Keširanje - Memory Cache |
-| API dokumentacija - Swagger |
-| Razvojno okruženje - Visual Studio Community 2026 |
-| Upravljanje paketima - npm, NuGet |
+| Backend - ASP.NET Core 8 Web API, C# |
+| Database - MySQL |
+| Object-Relational Mapping - Entity Framework Core |
+| Caching - ASP.NET Core Memory Cache |
+| API Documentation - Swagger |
+| Development Environment - Visual Studio Community |
+| Package Management - npm, NuGet |
 
-## 2. Funkcionalnosti aplikacije
+## 2. Key Features
 
-### Korisnički portal
+### Customer Portal
 
-- Prikaz osnovnih informacija o prvenstvu
-- Pregled grupa, reprezentacija i utakmica
-- Keširanje podataka radi bržeg učitavanja
-- Kupovina karata za jednu ili više utakmica
-- Popust od 10% za kupovinu do definisanog datuma
-- Dodatni popust od 5% uz validan promo-kod
-- Automatsko generisanje jedinstvene šifre pristupa
-- Generisanje promo-koda nakon kupovine
-- Prikaz cena u različitim valutama
-- Konverzija iz EUR pomoću eksternog API-ja
-- Korišćenje rezervnih kurseva ako API nije dostupan
-- Pretraga kupljenih karata
-- Izmena podataka na kartama
-- Otkazivanje karata uz čuvanje istorije
+- Display of general championship information
+- Overview of tournament groups, national teams, and matches
+- In-memory caching for improved data retrieval performance
+- Ticket purchasing for one or multiple matches
+- Automatic 10% discount for purchases made before a specified date
+- Additional 5% discount when a valid promotional code is applied
+- Automatic generation of unique ticket access codes
+- Generation of promotional codes after successful purchases
+- Support for multiple currencies
+- EUR currency conversion using an external exchange-rate API
+- Fallback exchange rates when the external API is unavailable
+- Searching and retrieving purchased tickets
+- Modification of existing ticket reservations
+- Ticket cancellation with historical record preservation
 
-### Administracija
+### Administration
 
-- Upravljanje podacima o prvenstvu
-- Dodavanje, izmena i brisanje grupa
-- Upravljanje reprezentacijama
-- Upravljanje stadionima
-- Kreiranje i izmena utakmica
-- Podešavanje cena karata
-- Upravljanje valutama
-- Pregled prodaje karata
-- Izveštaji o prodaji po utakmicama i datumima
-- Grafički prikaz statističkih podataka
+- Championship information management
+- Creation, modification, and deletion of tournament groups
+- National team management
+- Stadium management
+- Match scheduling and modification
+- Ticket price configuration
+- Currency management
+- Ticket sales overview
+- Sales reports grouped by matches and dates
+- Graphical visualization of statistical data
 
+## 3. Project Requirements
 
-## 3. Preduslovi za pokretanje
+This application was developed as an academic project focused on designing and implementing a full-stack information system.
 
-Pre pokretanja projekta potrebno je instalirati:
+The project requirements define the functional specifications, system architecture, administrative operations, ticket purchasing workflow, database integration, and reporting capabilities.
 
-1. Visual Studio Community 2022 ili noviji, sa podrškom za ASP.NET Core
+The original project assignment is available in Serbian:
+
+**[View Project Requirements (PDF)](docs/Project_Requirements.pdf)**
+
+The document describes the original assignment, while this README provides an overview of the implemented system and instructions for running the application.
+
+## 4. Prerequisites
+
+Before running the application, install the following software:
+
+1. Visual Studio Community 2022 or newer, with ASP.NET Core development support
 2. .NET 8 SDK
-3. Node.js LTS sa npm alatom
+3. Node.js LTS with npm
 4. MySQL Server
-5. SQLyog ili MySQL Workbench
+5. SQLyog or MySQL Workbench
 
-Provera instalacije:
+Verify the installations using:
 
 ```powershell
 node -v
@@ -69,45 +83,55 @@ npm -v
 dotnet --version
 ```
 
-## 4. Pokretanje baze podataka
+## 5. Database Setup
 
-1. Pokrenuti MySQL Server.
-2. Otvoriti SQLyog ili MySQL Workbench.
-3. Otvoriti fajl `sql/database.sql`.
-4. Izvršiti SQL skriptu.
-5. Proveriti da li je baza uspešno kreirana.
+The application uses a centralized MySQL database shared by both system modules.
 
-Podrazumevani naziv baze:
+### Installation Steps
+
+1. Start the MySQL Server.
+2. Open SQLyog or MySQL Workbench.
+3. Locate the `sql/database.sql` file.
+4. Execute the SQL script.
+5. Verify that the database and required tables have been created.
+
+### Default Database Configuration
+
+**Database name:**
 
 `SvetskoPrvenstvoUKosarci`
 
-Podrazumevani korisnik:
+**Username:**
 
 `root`
 
-Podrazumevana lozinka je prazna.
+**Password:**
 
-Ako MySQL instalacija koristi drugačije pristupne podatke, potrebno je promeniti konekcioni string u:
+Empty by default in the local development configuration.
+
+If your MySQL installation uses different credentials, update the database connection string in:
 
 `backend/API/appsettings.json`
 
-**Napomena:** Pre ponovnog izvršavanja SQL skripte proveriti da li sadrži naredbe `DROP TABLE`, jer one mogu obrisati postojeće podatke.
+For security, use local configuration or environment variables for database credentials rather than committing passwords to the repository.
 
-## 5. Pokretanje backenda
+**Important:** Before executing the SQL script again, check whether it contains `DROP TABLE` statements, as these may permanently remove existing data.
 
-Backend je razvijen korišćenjem ASP.NET Core 8 Web API tehnologije.
+## 6. Backend Setup
 
-### Pokretanje preko Visual Studio Community-ja
+The backend is implemented using ASP.NET Core 8 Web API and Entity Framework Core.
 
-1. Otvoriti Visual Studio.
-2. Izabrati `File → Open → Project/Solution`.
-3. Otvoriti `backend/SvetskoPrvenstvoUKosarci.sln`.
-4. Postaviti projekat `API` kao Startup Project.
-5. Pokrenuti aplikaciju pomoću `F5` ili `Ctrl + F5`.
+### Option A – Run with Visual Studio Community
 
-### Pokretanje pomoću terminala
+1. Open Visual Studio Community.
+2. Select `File → Open → Project/Solution`.
+3. Open `backend/SvetskoPrvenstvoUKosarci.sln`.
+4. Set the `API` project as the Startup Project.
+5. Run the application using `F5` or `Ctrl + F5`.
 
-Iz glavnog direktorijuma projekta:
+### Option B – Run from the Terminal
+
+From the root directory of the repository:
 
 ```powershell
 cd backend/API
@@ -115,86 +139,99 @@ dotnet restore
 dotnet run
 ```
 
-Swagger dokumentacija:
+Once the backend starts successfully, the Swagger API documentation is available at:
 
-http://localhost:5260/swagger
+**http://localhost:5260/swagger**
 
-Adresa važi ako je backend konfigurisan da koristi port 5260.
+This address applies when the backend is configured to use port 5260.
 
-Backend mora ostati pokrenut kako bi frontend mogao da komunicira sa API-jem.
+Keep the backend running while using the frontend application.
 
-## 6. Pokretanje frontenda
+## 7. Frontend Setup
 
-Frontend je razvijen korišćenjem React-a i TypeScript-a.
+The frontend is developed using React 18 and TypeScript.
 
-### Instalacija biblioteka
+### Install Dependencies
 
-Otvoriti terminal u folderu `frontend` i izvršiti:
+Open a terminal in the repository root directory and run:
 
 ```powershell
 cd frontend
 npm install
 ```
 
-Ova komanda instalira sve neophodne biblioteke definisane u `package.json`.
+This command installs the dependencies defined in `package.json`.
 
-### Provera TypeScript koda
+### TypeScript Validation
 
-Pre pokretanja preporučuje se:
+Before starting the application, verify that the TypeScript code compiles correctly:
 
 ```powershell
 npx tsc --noEmit
 ```
 
-Ako nema prijavljenih grešaka, TypeScript provera je uspešno završena.
+If the command finishes without reporting errors, the TypeScript validation has passed.
 
-### Pokretanje aplikacije
+### Start the Frontend
+
+Run:
 
 ```powershell
 npm start
 ```
 
-Nakon uspešnog pokretanja frontend je dostupan na:
+After successful compilation, the frontend should be available at:
 
-http://localhost:3000
+**http://localhost:3000**
 
-**Napomena:** Koristi se `npm start`, a ne `npm run dev`, zato što je frontend podešen pomoću `react-scripts`.
+**Note:** The project uses `react-scripts`, so the correct startup command is `npm start`, not `npm run dev`.
 
-## 7. Redosled pokretanja kompletnog sistema
+## 8. Running the Complete System
 
-Za ispravan rad aplikacije potrebno je:
+To run the complete application, follow this order:
 
-1. Pokrenuti MySQL Server.
-2. Proveriti da baza `SvetskoPrvenstvoUKosarci` postoji.
-3. Pokrenuti ASP.NET Core backend.
-4. Proveriti dostupnost Swagger dokumentacije.
-5. Otvoriti drugi terminal.
-6. U folderu `frontend` pokrenuti `npm start`.
-7. Otvoriti http://localhost:3000.
+1. Start MySQL Server.
+2. Verify that the `SvetskoPrvenstvoUKosarci` database exists.
+3. Start the ASP.NET Core backend.
+4. Verify that Swagger documentation is accessible.
+5. Open a separate terminal.
+6. Navigate to the `frontend` directory.
+7. Run `npm start`.
+8. Open http://localhost:3000 in your browser.
 
-Backend i frontend treba da ostanu aktivni tokom korišćenja aplikacije.
+The backend and frontend must remain running during application usage.
 
-## 8. Testiranje aplikacije
+## 9. Application Testing
 
-Nakon pokretanja potrebno je proveriti:
+After starting the complete system, the following functionalities can be tested:
 
-- Učitavanje početne stranice
-- Prikaz grupa i reprezentacija
-- Prikaz utakmica
-- Kupovinu karata
-- Obračun popusta i promo-kodova
-- Preračunavanje valuta
-- Pretragu i izmenu kupljenih karata
-- Otkazivanje karata
-- Administrativne funkcionalnosti
-- Generisanje izveštaja i grafikona
+- Loading the home page
+- Displaying groups and national teams
+- Viewing scheduled matches
+- Purchasing tickets for one or multiple matches
+- Applying promotional discounts
+- Generating ticket access codes
+- Converting ticket prices into different currencies
+- Searching and modifying existing reservations
+- Cancelling reservations
+- Managing tournament information through the administrative interface
+- Generating sales reports
+- Displaying statistical charts
 
-## 9. Dodatne napomene
+## 10. Additional Technical Notes
 
-U razvojnom okruženju backend koristi Entity Framework Core za rad sa bazom podataka.
+The backend uses Entity Framework Core for database access and data management.
 
-Ako je uključena metoda `Database.EnsureCreated()`, ona kreira šemu baze kada ona ne postoji, ali ne izvršava migracije nad već postojećom šemom.
+When `Database.EnsureCreated()` is enabled in the Development environment, Entity Framework Core creates the database schema if it does not exist.
 
-Preporučuje se korišćenje SQL skripte `database.sql` za inicijalno podešavanje baze.
+However, `EnsureCreated()` does not apply migrations or update an existing database schema.
 
-Za ispravan rad sistema neophodno je da frontend ima pristup odgovarajućoj adresi backend API-ja.
+For initial database configuration, using the provided `sql/database.sql` script is recommended.
+
+The frontend must also be configured to communicate with the correct backend API address.
+
+## 11. Project Purpose
+
+This project was developed to demonstrate practical knowledge of full-stack web development, RESTful API integration, relational databases, and client-server architecture.
+
+It combines React, TypeScript, ASP.NET Core, and MySQL to implement a complete information system for basketball championship management, including ticket booking, administrative operations, and sales reporting.
