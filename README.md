@@ -53,6 +53,27 @@ Both modules share a centralized MySQL database and communicate through an ASP.N
 - Sales reports grouped by matches and dates
 - Graphical visualization of statistical data
 
+## Application Screenshots
+
+The following screenshots demonstrate the main
+features and user interface of the application.
+
+### Home Page
+![Home Page](screenshots/home.PNG)
+
+### Ticket Booking
+![Ticket Booking](screenshots/ticket-purchase-form.PNG)
+![Ticket Booking](screenshots/ticket-purchased.PNG)
+
+### Reservation Management
+![Reservation Management](screenshots/update-ticket.PNG)
+
+### Administration Panel
+![Administration Panel](screenshots/admin.PNG)
+
+### Sales Reports
+![Sales Reports](screenshots/statistics.PNG)
+
 ## 3. Project Requirements
 
 This application was developed as an academic project focused on designing and implementing a full-stack information system.
